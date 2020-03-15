@@ -1,0 +1,42 @@
+.error-message {
+    background: #ff3d331a;
+    color: #f52419;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    display: flex;
+}
+
+.error-message-text {
+    margin-top: auto;
+    margin-bottom: auto;
+    color: inherit;
+    font-size: 1rem;
+    margin-left: 10px;
+}
+
+.error-sign {
+    background: url("../images/warning.svg") no-repeat;
+    height: 30px;
+    width: 30px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.success-message {
+    background: #33ff461a;
+    color: #28a745;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    display: flex;
+    width: 90%;
+}
+
+.success-sign {
+    background: url("../images/success.svg") no-repeat;
+    height: 30px;
+    width: 30px;
+    margin-top: auto;
+    margin-bottom: auto;
+}

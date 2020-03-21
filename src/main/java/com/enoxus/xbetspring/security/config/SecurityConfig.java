@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -29,14 +30,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/login?error")
                 .usernameParameter("login")
                 .passwordParameter("password")
-                .permitAll();
+                .permitAll()
+                .and()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/");
 
         http.authorizeRequests()
                 .antMatchers("/user").authenticated()
                 .antMatchers("/register").permitAll()
                 .antMatchers("/errorPage").permitAll()
                 .antMatchers("/edit").authenticated()
-                .antMatchers("/").authenticated();
+                .antMatchers("/").permitAll()
+                .antMatchers("/bets").authenticated();
     }
 
     @Override

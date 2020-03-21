@@ -27,7 +27,6 @@ public class EditController {
 
     @PostMapping("/edit")
     public String handleFileUpload(@RequestParam("file") MultipartFile file, EditDto dto) {
-        System.out.println(dto);
         Optional<UserDto> user = userService.getCurrentUser();
         if (user.isPresent()) {
             String filePath = fileStorageService.saveFile(file); // saving user avi

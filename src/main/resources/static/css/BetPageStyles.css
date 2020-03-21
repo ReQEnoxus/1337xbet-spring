@@ -1,0 +1,232 @@
+.nav-bar-container {
+    padding: 20px;
+    width: 100%;
+    height: 60px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    background: #28A745;
+}
+
+.home-list-item-date {
+    justify-content: center;
+    width: 33%;
+    color: black;
+}
+
+div {
+
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+body {
+    height: 100vh;
+}
+
+a:link {
+    color: white;
+}
+
+a:visited {
+    color: white;
+}
+
+a:hover {
+    color: green;
+}
+
+a:active {
+    color: white;
+}
+
+.nav-bar-title {
+    font-size: 25px;
+    font-weight: bolder;
+}
+
+.nav-bar-search {
+    margin-top: 15px;
+}
+
+.nav-bar-userpic-pic {
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 30px;
+    width: 40px;
+    object-fit: cover;
+}
+
+.nav-bar-placeholder {
+    height: 40px;
+    width: 300px;
+    border: 1px solid #707070;
+    border-radius: 3px;
+    background: #ffffff !important;
+    outline: none;
+    color: #cccccc;
+    font-size: 15px;
+    font-family: "Segoe UI", serif;
+}
+
+.nav-bar-placeholder-button {
+    display: flex;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.dropdown-menu {
+    background-color: #4CAF50;
+}
+
+.tg {
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.tg .tg-0lax {
+    text-align: left;
+    vertical-align: top
+}
+
+.home-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    background-color: #F1F1F1;
+}
+
+.home-list {
+    background-color: white;
+    width: 65vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-list-teams {
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 33%;
+    color: black;
+    cursor: pointer;
+}
+
+.home-list-item-my-bet {
+    margin-right: 30px;
+    width: 33%;
+    justify-content: flex-end;
+}
+
+.home-list-teams-team1-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.home-list-teams-team2-container {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.home-list-teams-team1-name {
+    margin-left: 7px;
+    color: #000;
+}
+
+.home-list-teams-team2-name {
+    margin-left: 7px;
+    color: #000;
+}
+
+.home-list-item {
+    margin-top: 30px;
+    width: 64vw;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+}
+
+h1 {
+    font-family: "Segoe UI", serif;
+    font-size: 50px;
+}
+
+.home-list-header {
+    font-family: 'Segoe UI', serif;
+    height: 140px;
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #000000;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+.home-list-filter {
+    margin-top: 30px;
+    align-items: center;
+    height: 7vw;
+    display: flex;
+    justify-content: right;
+}
+
+.home-list-text {
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+.home-list-teams {
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+.home-list-teams-team1 {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.home-list-teams-team2 {
+    height: 40px;
+    border-radius: 50%;
+}
+
+h2 {
+    margin: 0;
+}
+
+h3 {
+    margin: 0;
+}
+
+.home-footer {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-basis: 10%;
+    background-color: #FFAB00;
+}

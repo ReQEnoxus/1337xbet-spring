@@ -5,6 +5,7 @@ import com.enoxus.xbetspring.entity.ConfirmationMessage;
 import com.enoxus.xbetspring.entity.FileInfo;
 import com.enoxus.xbetspring.entity.State;
 import com.enoxus.xbetspring.entity.User;
+import com.enoxus.xbetspring.exceptions.SignUpException;
 import com.enoxus.xbetspring.repositories.FileInfoRepository;
 import com.enoxus.xbetspring.repositories.UserRepository;
 import com.enoxus.xbetspring.util.FileStorageUtil;
@@ -40,6 +41,10 @@ public class SignUpServiceImpl implements SignUpService {
     public void signUp(SignUpDto dto) {
         String raw = dto.getPassword();
         String encoded = passwordEncoder.encode(raw);
+
+        userRepository.findByLogin(dto.getLogin()).ifPresent(user -> {
+            throw new SignUpException("Логин уже занят");
+        });
 
         FileInfo avatarFile = FileInfo.builder()
                 .originalFileName("avi.png")

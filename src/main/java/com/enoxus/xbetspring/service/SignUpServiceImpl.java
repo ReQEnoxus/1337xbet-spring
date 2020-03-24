@@ -9,6 +9,7 @@ import com.enoxus.xbetspring.exceptions.SignUpException;
 import com.enoxus.xbetspring.repositories.FileInfoRepository;
 import com.enoxus.xbetspring.repositories.UserRepository;
 import com.enoxus.xbetspring.util.FileStorageUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -17,6 +18,7 @@ import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 
 @Component
+@Slf4j
 public class SignUpServiceImpl implements SignUpService {
 
     @Autowired
@@ -36,6 +38,9 @@ public class SignUpServiceImpl implements SignUpService {
 
     @Autowired
     private FileInfoRepository fileInfoRepository;
+
+    @Autowired
+    private SMSService smsService;
 
     @Override
     public void signUp(SignUpDto dto) {
@@ -60,6 +65,7 @@ public class SignUpServiceImpl implements SignUpService {
                 .login(dto.getLogin())
                 .email(dto.getEmail())
                 .balance(10_000d)
+                .phoneNumber(dto.getPhoneNumber())
                 .name(dto.getName())
                 .lastName(dto.getLastName())
                 .password(encoded)
@@ -67,6 +73,10 @@ public class SignUpServiceImpl implements SignUpService {
                 .confirmCode(UUID.randomUUID().toString())
                 .avatar(avatarFile)
                 .build();
+
+        executorService.submit(() ->
+                log.debug(smsService.sendSignUpSms("Вы успешно зарегистрировались. Подтвердите аккаунт, следуя инструкциям на почте", dto.getPhoneNumber()))
+        );
 
         executorService.submit(() -> emailService.sendMail(ConfirmationMessage.builder()
                 .code(user.getConfirmCode())

@@ -23,6 +23,7 @@ public class User {
     private String name;
     private String lastName;
     private String email;
+    private String phoneNumber;
 
     @ManyToOne
     @JoinColumn(name = "file_info_id")

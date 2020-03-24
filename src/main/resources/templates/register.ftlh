@@ -64,6 +64,14 @@
                 </div>
             </div>
             <div class="form-group">
+                <input type="tel" class="form-control" placeholder="Номер телефона" name="phoneNumber"
+                       pattern="^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$"
+                       required>
+                <div class="invalid-feedback">
+                    Неверный формат номера телефона
+                </div>
+            </div>
+            <div class="form-group">
                 <input type="password" class="form-control" id="password" placeholder="Пароль" name="password" required
                        minlength="6" maxlength="20">
                 <div class="invalid-feedback">

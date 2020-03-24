@@ -24,6 +24,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
 
+        http.authorizeRequests()
+                .antMatchers("/user").authenticated()
+                .antMatchers("/register").permitAll()
+                .antMatchers("/errorPage").permitAll()
+                .antMatchers("/edit").authenticated()
+                .antMatchers("/").permitAll()
+                .antMatchers("/bets").authenticated();
+
         http.formLogin()
                 .loginPage("/login")
                 .defaultSuccessUrl("/user")
@@ -34,14 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/");
-
-        http.authorizeRequests()
-                .antMatchers("/user").authenticated()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/errorPage").permitAll()
-                .antMatchers("/edit").authenticated()
-                .antMatchers("/").permitAll()
-                .antMatchers("/bets").authenticated();
     }
 
     @Override

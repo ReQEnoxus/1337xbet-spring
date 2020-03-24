@@ -47,6 +47,6 @@ public class Application {
 
     @EventListener(ContextRefreshedEvent.class)
     public void startUpdater() {
-//        executorService.submit(dataUpdater); commented because api has limited usage and i don't want to pay for it (1-2 times are fine)
+//        executorService.submit(dataUpdater); // commented because api has limited usage and i don't want to pay for it (1-2 times are fine)
     }
 }

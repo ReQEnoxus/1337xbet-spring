@@ -21,12 +21,14 @@ public class RootController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private DateHelper dateHelper;
 
     @GetMapping("/")
     public String getRootPage(Model model) {
         List<MatchDto> matches = matchService.getInitialMatchesForCurrentDate();
         UserDto user = userService.getCurrentUser().orElse(null);
-        List<String> dates = DateHelper.thisWeekLocalized();
+        List<String> dates = dateHelper.thisWeekLocalized();
 
         model.addAttribute("user", user);
         model.addAttribute("matches", matches);

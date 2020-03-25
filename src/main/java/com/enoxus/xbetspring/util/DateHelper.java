@@ -1,6 +1,7 @@
 package com.enoxus.xbetspring.util;
 
 import lombok.SneakyThrows;
+import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -9,10 +10,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+@Component
 public class DateHelper {
-    private static SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-    public static List<String> getThisWeek() {
+    public List<String> getThisWeek() {
         List<String> dates = new ArrayList<>();
         String today = formatter.format(new Date());
         dates.add(today);
@@ -27,26 +29,26 @@ public class DateHelper {
         return dates;
     }
 
-    public static String format(Date date) {
+    public String format(Date date) {
         return formatter.format(date);
     }
 
     @SneakyThrows
-    public static Date parse(String date) {
+    public Date parse(String date) {
         return formatter.parse(date);
     }
 
-    public static String russianLocalized(Date date) {
+    public String russianLocalized(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("d MMMM - HH:mm МСК", new Locale("ru"));
         return sdf.format(date);
     }
 
-    public static String timeLocalized(Date date) {
+    public String timeLocalized(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm МСК", new Locale("ru"));
         return sdf.format(date);
     }
 
-    public static List<String> thisWeekLocalized() {
+    public List<String> thisWeekLocalized() {
         SimpleDateFormat sdf = new SimpleDateFormat("d MMMM", new Locale("ru"));
         List<String> thisWeek = getThisWeek();
         List<String> localized = new ArrayList<>();

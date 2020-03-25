@@ -3,6 +3,8 @@ package com.enoxus.xbetspring.util;
 
 import com.enoxus.xbetspring.entity.CoefficientSet;
 import com.enoxus.xbetspring.entity.Prediction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
@@ -11,14 +13,13 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+@Component
 public class BetHelper {
-    private static DecimalFormat df = new DecimalFormat("#.###", new DecimalFormatSymbols(Locale.US));
 
-    static {
-        df.setRoundingMode(RoundingMode.FLOOR);
-    }
+    @Autowired
+    private DecimalFormat df;
 
-    public static Map<Prediction, Double> calculateCoefficients(int teamHome, int teamAway) {
+    public Map<Prediction, Double> calculateCoefficients(int teamHome, int teamAway) {
         Map<Prediction, Double> coefficients = new HashMap<>();
 
         double difference = Math.min(teamHome, teamAway) / (double) Math.max(teamHome, teamAway);
@@ -36,7 +37,7 @@ public class BetHelper {
         return coefficients;
     }
 
-    public static CoefficientSet coefficientSet(int teamHome, int teamAway) {
+    public CoefficientSet coefficientSet(int teamHome, int teamAway) {
         Map<Prediction, Double> coeffs = calculateCoefficients(teamHome, teamAway);
         return new CoefficientSet(coeffs.get(Prediction.HOME), coeffs.get(Prediction.AWAY), coeffs.get(Prediction.DRAW));
     }

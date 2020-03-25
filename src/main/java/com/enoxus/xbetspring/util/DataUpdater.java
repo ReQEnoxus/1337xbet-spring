@@ -18,6 +18,9 @@ public class DataUpdater implements Runnable {
     @Autowired
     private BetService betService;
 
+    @Autowired
+    private DateHelper dateHelper;
+
     @SneakyThrows
     @Override
     public void run() {
@@ -27,7 +30,7 @@ public class DataUpdater implements Runnable {
 
         System.out.println("Data updater started, requesting data for current week");
 
-        for (String date : DateHelper.getThisWeek()) {
+        for (String date : dateHelper.getThisWeek()) {
             apiService.getMatchesForDate(date);
             System.out.println("Received matches for " + date);
         }

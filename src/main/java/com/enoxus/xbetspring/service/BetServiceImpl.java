@@ -29,6 +29,9 @@ public class BetServiceImpl implements BetService {
     @Autowired
     private MatchRepository matchRepository;
 
+    @Autowired
+    private BetHelper betHelper;
+
 
     @Override
     public void createBetForUser(BetDto betDto, UserDto userDto) throws BetCreatingException {
@@ -63,7 +66,7 @@ public class BetServiceImpl implements BetService {
             Bet bet = Bet.builder()
                     .active(true)
                     .amount(betDto.getAmount())
-                    .coefficient(BetHelper.calculateCoefficients(match.getHomeTeam().getId(), match.getAwayTeam().getId()).get(prediction))
+                    .coefficient(betHelper.calculateCoefficients(match.getHomeTeam().getId(), match.getAwayTeam().getId()).get(prediction))
                     .match(match)
                     .owner(user)
                     .won(false)

@@ -21,10 +21,16 @@ public class MatchServiceImpl implements MatchService {
     @Autowired
     private MatchRepository matchRepository;
 
+    @Autowired
+    private DateHelper dateHelper;
+
+    @Autowired
+    private BetHelper betHelper;
+
     @Override
     public List<MatchDto> getMatchesByQuery(QueryDto query) {
         Date initial = new Date();
-        Date queryDateStart = DateHelper.parse(DateHelper.getThisWeek().get(query.getDate()));
+        Date queryDateStart = dateHelper.parse(dateHelper.getThisWeek().get(query.getDate()));
         Date queryDateEnd = new Date(queryDateStart.getTime() + 86400000);
 
         List<Match> allMatches = matchRepository.findAllByDateBetween(queryDateStart, queryDateEnd);
@@ -38,9 +44,9 @@ public class MatchServiceImpl implements MatchService {
                 .map(match -> MatchDto.builder()
                         .awayTeam(match.getAwayTeam())
                         .homeTeam(match.getHomeTeam())
-                        .coefficients(BetHelper.coefficientSet(match.getHomeTeam().getId(), match.getAwayTeam().getId()))
+                        .coefficients(betHelper.coefficientSet(match.getHomeTeam().getId(), match.getAwayTeam().getId()))
                         .id(match.getId())
-                        .localizedDate(DateHelper.russianLocalized(match.getDate()))
+                        .localizedDate(dateHelper.russianLocalized(match.getDate()))
                         .build())
                 .collect(Collectors.toList());
     }
@@ -59,7 +65,7 @@ public class MatchServiceImpl implements MatchService {
     @Override
     public Long getMatchCount(Integer dateIndex) {
         Date initial = new Date();
-        Date queryDateStart = DateHelper.parse(DateHelper.getThisWeek().get(dateIndex));
+        Date queryDateStart = dateHelper.parse(dateHelper.getThisWeek().get(dateIndex));
         Date queryDateEnd = new Date(queryDateStart.getTime() + 86400000);
 
         List<Match> matches = matchRepository.findAllByDateBetween(queryDateStart, queryDateEnd);
@@ -72,9 +78,9 @@ public class MatchServiceImpl implements MatchService {
     @Override
     public Optional<MatchDto> getMatchById(Long id) {
         return matchRepository.findById(id).map(match -> MatchDto.builder()
-                .localizedDate(DateHelper.russianLocalized(match.getDate()))
+                .localizedDate(dateHelper.russianLocalized(match.getDate()))
                 .id(match.getId())
-                .coefficients(BetHelper.coefficientSet(match.getHomeTeam().getId(), match.getAwayTeam().getId()))
+                .coefficients(betHelper.coefficientSet(match.getHomeTeam().getId(), match.getAwayTeam().getId()))
                 .homeTeam(match.getHomeTeam())
                 .awayTeam(match.getAwayTeam())
                 .build());

@@ -1,6 +1,7 @@
 package com.enoxus.xbetspring;
 
 import com.enoxus.xbetspring.util.DataUpdater;
+import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
@@ -11,12 +12,25 @@ import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @SpringBootApplication
 public class Application {
+
+    @Bean
+    public DecimalFormat decimalFormat() {
+        DecimalFormat df = new DecimalFormat("#.###", new DecimalFormatSymbols(Locale.US));
+        df.setRoundingMode(RoundingMode.FLOOR);
+
+        return df;
+    }
+
 
     @Bean
     public ExecutorService executorService() {

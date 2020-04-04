@@ -66,7 +66,7 @@ $(document).ready(function () {
                     value: url.searchParams.get('id')
                 },
                 {
-                    name: "parent",
+                    name: "parentId",
                     value: this.id.replace(/^\D+/g, '')
                 }
             ];

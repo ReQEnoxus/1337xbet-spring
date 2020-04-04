@@ -39,7 +39,7 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" style="color: white;" href="/user?id=${user.id}">Мой профиль</a>
-                <#--<a class="dropdown-item" style="color: white;" href="/bets">Мои ставки</a>-->
+                    <a class="dropdown-item" style="color: white;" href="/bets">Мои ставки</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" style="color: white;" href="/logout">Выйти</a>
                 </div>

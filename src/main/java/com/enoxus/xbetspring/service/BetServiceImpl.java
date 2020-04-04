@@ -1,6 +1,8 @@
 package com.enoxus.xbetspring.service;
 
 import com.enoxus.xbetspring.dto.BetDto;
+import com.enoxus.xbetspring.dto.BetViewDto;
+import com.enoxus.xbetspring.dto.MatchDto;
 import com.enoxus.xbetspring.dto.UserDto;
 import com.enoxus.xbetspring.entity.Bet;
 import com.enoxus.xbetspring.entity.Match;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class BetServiceImpl implements BetService {
@@ -32,6 +35,8 @@ public class BetServiceImpl implements BetService {
     @Autowired
     private BetHelper betHelper;
 
+    @Autowired
+    private MatchService matchService;
 
     @Override
     public void createBetForUser(BetDto betDto, UserDto userDto) throws BetCreatingException {
@@ -113,5 +118,19 @@ public class BetServiceImpl implements BetService {
                 betRepository.save(bet);
             }
         }
+    }
+
+    @Override
+    public List<BetViewDto> getAllBetsOfUser(Long userId) {
+        return betRepository.getAllByOwnerId(userId)
+                .stream()
+                .map(bet -> BetViewDto.builder()
+                        .amount(bet.getAmount())
+                        .coefficient(bet.getCoefficient())
+                        .match(matchService.getMatchById(bet.getMatch().getId()).orElseThrow(IllegalArgumentException::new))
+                        .active(bet.isActive())
+                        .build())
+                .collect(Collectors.toList());
+
     }
 }

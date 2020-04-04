@@ -7,7 +7,7 @@
         <ul class="list-group w-100">
             <li class="list-group-item">
                 <div class="home-comment-header">
-                    <img class="nav-bar-userpic-pic" src="${reply.owner.avatarPath}"
+                    <img class="nav-bar-userpic-pic" src="files/${reply.owner.avatarPath}"
                          alt="User avatar">
                     <a class="home-comment-user nav-link" href="/user?id=${reply.owner.id}">
                         <h6 class="home-comment-user">
@@ -28,7 +28,7 @@
         <ul class="list-group w-100">
             <li class="list-group-item">
                 <div class="home-comment-header">
-                    <img class="nav-bar-userpic-pic" src="${comment.owner.avatarPath}"
+                    <img class="nav-bar-userpic-pic" src="files/${comment.owner.avatarPath}"
                          alt="User avatar">
                     <a class="home-comment-user nav-link" href="/user?id=${comment.owner.id}">
                         <h6 class="home-comment-user">
@@ -154,33 +154,33 @@
                     <button class="btn btn-lg btn-success btn-block" type="submit">Сделать ставку</button>
                 </form>
             </div>
-        <#--<#if commentError??>-->
-        <#--<@errorMessage error=commentError />-->
-        <#--<#elseif commentSuccess??>-->
-        <#--<@successMessage success=commentSuccess />-->
-        <#--</#if>-->
-        <#--<div class="home-list-comments mt-5">-->
-        <#--<ul class="list-group" style="width: 100%;">-->
-        <#--<li class="list-group-item">-->
-        <#--<div class="home-comment-header">-->
-        <#--<p class="h4">Оставить комментарий к матчу</p>-->
-        <#--</div>-->
-        <#--<form class="form-signin myForm" id="Comment" method="post" action="/comment" novalidate-->
-        <#--style="width: 100%;">>-->
-        <#--<textarea class="form-control" rows="2" id="comment-form" placeholder="Ваш комментарий"-->
-        <#--required name="comment-text"></textarea>-->
-        <#--<div class="invalid-feedback">-->
-        <#--Комментарий не должен быть пустым-->
-        <#--</div>-->
-        <#--<button class="btn btn-sm btn-success btn-block mt-2" type="submit">Отправить</button>-->
-        <#--</form>-->
-        <#--</li>-->
-        <#--</ul>-->
-        <#--</div>-->
+        <#if commentError??>
+            <@errorMessage error=commentError />
+        <#elseif commentSuccess??>
+            <@successMessage success=commentSuccess />
+        </#if>
+            <div class="home-list-comments mt-5">
+                <ul class="list-group" style="width: 100%;">
+                    <li class="list-group-item">
+                        <div class="home-comment-header">
+                            <p class="h4">Оставить комментарий к матчу</p>
+                        </div>
+                        <form class="form-signin myForm" id="Comment" method="post" action="/comment" novalidate
+                              style="width: 100%;">>
+                            <textarea class="form-control" rows="2" id="comment-form" placeholder="Ваш комментарий"
+                                      required name="text"></textarea>
+                            <div class="invalid-feedback">
+                                Комментарий не должен быть пустым
+                            </div>
+                            <button class="btn btn-sm btn-success btn-block mt-2" type="submit">Отправить</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
 
-        <#--<#list comments as comment>-->
-        <#--<@commentBlock comment=comment />-->
-        <#--</#list>-->
+        <#list comments as comment>
+            <@commentBlock comment=comment />
+        </#list>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"

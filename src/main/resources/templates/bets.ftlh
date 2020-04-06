@@ -22,13 +22,13 @@
     </div>
     <#if bet.active>
         <#assign color = "#000000">
-        <#assign outcome = "Еще не сыграна">
+        <#assign outcome> <@spring.message 'bets.outcome.tbd'/> </#assign>
     <#elseif bet.won>
         <#assign color = "#28a745">
-        <#assign outcome = "Победа">
+        <#assign outcome> <@spring.message 'bets.outcome.won'/> </#assign>
     <#else>
         <#assign color = "#f52419">
-        <#assign outcome = "Поражение">
+        <#assign outcome> <@spring.message 'bets.outcome.lose'/> </#assign>
     </#if>
     <div class="home-list-item-my-bet" style="color: ${color};">
         <#if color == "#000000">
@@ -47,7 +47,7 @@
 </#macro>
 
 <#macro title>
-    <title> 1337Bet - Мои ставки </title>
+    <title> 1337Bet - <@spring.message 'bets.title'/> </title>
 </#macro>
 
 <#macro additionalCss>
@@ -64,7 +64,7 @@
     <div class="home-container">
         <div class="home-list">
             <div class="home-list-header">
-                <h1>Мои ставки</h1>
+                <h1> <@spring.message 'bets.title'/> </h1>
             </div>
             <#list bets as bet>
                 <@betBlock bet=bet />

@@ -1,3 +1,5 @@
+<#import "spring.ftl" as spring />
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,13 +14,13 @@
     <#if authorized??>
     <div class="success-message">
         <div class="success-sign"></div>
-        <div class="error-message-text"> Аккаунт успешно подтвержден, выполните вход</div>
+        <div class="error-message-text"> <@spring.message 'confirm.success'/> </div>
     </div>
     <#else>
         <div class="error-message">
             <div class="error-sign"></div>
             <div class="error-message-text">
-                Неверный код подтверждения
+                <@spring.message 'confirm.failure' />
             </div>
         </div>
     </#if>

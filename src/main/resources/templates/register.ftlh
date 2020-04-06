@@ -1,4 +1,5 @@
 <#ftl encoding='UTF-8'>
+<#import "spring.ftl" as spring />
 <#include "errors.ftlh">
 <!doctype html>
 <html lang="en">
@@ -30,65 +31,70 @@
 <form class="form-signin" id="registerForm" method="post" action="/register" novalidate>
     <div class="card login-card" style="width: 25rem;">
         <div class="card-body">
-            <h5 class="card-title">Регистрация</h5>
+            <h5 class="card-title"><@spring.message 'register.prompt'/></h5>
             <#if error??>
                 <@errorMessage error=error />
             </#if>
             <div class="form-group">
 
-                <input type="text" class="form-control" placeholder="Логин" required
+                <input type="text" class="form-control" placeholder="<@spring.message 'login.prompt'/>" required
                        pattern="[A-Za-z]+" minlength="6" maxlength="20" name="login">
                 <div class="invalid-feedback">
-                    Логин должен содержать от 6 до 20 латинских символов
+                    <@spring.message 'register.loginInvalid'/>
                 </div>
             </div>
             <div class="form-group">
 
-                <input type="text" class="form-control" placeholder="Имя" name="name" required
+                <input type="text" class="form-control" placeholder="<@spring.message 'register.name'/>" name="name"
+                       required
                        pattern="[А-Яа-я]+">
                 <div class="invalid-feedback">
-                    Имя должно содержать только русские буквы
+                    <@spring.message 'register.nameInvalid'/>
                 </div>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="Фамилия" name="lastName" required
+                <input type="text" class="form-control" placeholder="<@spring.message 'register.lastName'/>"
+                       name="lastName" required
                        pattern="[А-Яа-я]+">
                 <div class="invalid-feedback">
-                    Фамилия должна содержать только русские буквы
+                    <@spring.message 'register.lastNameInvalid'/>
                 </div>
             </div>
             <div class="form-group">
                 <input type="email" class="form-control" placeholder="E-mail" name="email" required>
                 <div class="invalid-feedback">
-                    Неверный формат e-mail
+                    <@spring.message 'register.emailInvalid'/>
                 </div>
             </div>
             <div class="form-group">
-                <input type="tel" class="form-control" placeholder="Номер телефона" name="phoneNumber"
+                <input type="tel" class="form-control" placeholder="<@spring.message 'register.phone'/>"
+                       name="phoneNumber"
                        pattern="^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$"
                        required>
                 <div class="invalid-feedback">
-                    Неверный формат номера телефона
+                    <@spring.message 'register.phoneInvalid'/>
                 </div>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" id="password" placeholder="Пароль" name="password" required
+                <input type="password" class="form-control" id="password"
+                       placeholder="<@spring.message 'register.passwrd'/>" name="password" required
                        minlength="6" maxlength="20">
                 <div class="invalid-feedback">
-                    Пароль должен содержать от 6 до 20 символов
+                    <@spring.message 'register.passwordInvalid'/>
                 </div>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" id="passwordAgain" placeholder="Подтвердите пароль"
+                <input type="password" class="form-control" id="passwordAgain"
+                       placeholder="<@spring.message 'register.confirmPassword'/>"
                        required>
                 <div class="invalid-feedback">
-                    Пароли не совпадают
+                    <@spring.message 'register.passwordsDoNotMatch'/>
                 </div>
             </div>
         </div>
 
-        <button type="submit" class="btn btn-success w-80 mt-3 mx-auto">Зарегистрироваться</button>
-        <a href="/login" class="card-link mx-auto mt-3">У меня есть аккаунт</a>
+        <button type="submit" class="btn btn-success w-80 mt-3 mx-auto"><@spring.message 'register.prompt'/></button>
+        <a href="/login" class="card-link mx-auto mt-3"><@spring.message 'register.alreadyHaveAccount'/></a>
     </div>
 </form>
 

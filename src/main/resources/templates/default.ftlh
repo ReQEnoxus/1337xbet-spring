@@ -1,4 +1,6 @@
 <#ftl encoding='UTF-8'>
+<#import "spring.ftl" as spring />
+
 <#macro head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -30,18 +32,19 @@
             </div>
             <a class="nav-link" style="color: white;" href="/user">${user.name} ${user.lastName}</a>
         </div>
-        <div class="nav-bar-balance">Баланс: ${user.balance} leetCoins</div>
+        <div class="nav-bar-balance"><@spring.message 'user.balance'/>: ${user.balance} leetCoins</div>
         <div class="nav-bar-more">
             <div class="dropdown">
                 <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Меню
+                    <@spring.message 'common.menu'/>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" style="color: white;" href="/user?id=${user.id}">Мой профиль</a>
-                    <a class="dropdown-item" style="color: white;" href="/bets">Мои ставки</a>
+                    <a class="dropdown-item" style="color: white;"
+                       href="/user?id=${user.id}"><@spring.message 'common.myProfile'/></a>
+                    <a class="dropdown-item" style="color: white;" href="/bets"><@spring.message 'common.myBets'/></a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" style="color: white;" href="/logout">Выйти</a>
+                    <a class="dropdown-item" style="color: white;" href="/logout"><@spring.message 'common.logout'/></a>
                 </div>
             </div>
         </div>
@@ -55,12 +58,13 @@
             <div class="dropdown">
                 <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Меню
+                    <@spring.message 'common.menu'/>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="/login" style="color: white;">Вход</a>
+                    <a class="dropdown-item" href="/login" style="color: white;"><@spring.message 'common.signIn'/></a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/register" style="color: white;">Регистрация</a>
+                    <a class="dropdown-item" href="/register"
+                       style="color: white;"><@spring.message 'register.prompt'/></a>
                 </div>
             </div>
         </div>

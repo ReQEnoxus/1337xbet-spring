@@ -1,15 +1,16 @@
 <#ftl encoding="UTF-8">
+<#import "spring.ftl" as spring />
 <#include "errors.ftlh">
 
 <#macro matchBlock match>
     <div class="home-list-item">
         <table class="table table-bordered">
             <tr>
-                <th scope="col" class="date-col"> Дата</th>
-                <th scope="col" class="teams-col">Команды</th>
+                <th scope="col" class="date-col"> <@spring.message 'main.date'/></th>
+                <th scope="col" class="teams-col"><@spring.message 'main.teams'/></th>
                 <th scope="col" class="coef-col">${match.homeTeam.name}</th>
                 <th scope="col" class="coef-col">${match.awayTeam.name}</th>
-                <th scope="col" class="coef-col">Ничья</th>
+                <th scope="col" class="coef-col"><@spring.message 'main.draw'/></th>
                 <th class="more-col"></th>
             </tr>
             <tr>
@@ -28,7 +29,8 @@
                     rowspan="2">${match.coefficients.draw}</td class="align-middle">
                 <td class="align-middle" class="align-middle" rowspan="2">
 
-                    <a href="/match?id=${match.id?c}" class="btn btn-outline-success">Подробнее</a>
+                    <a href="/match?id=${match.id?c}"
+                       class="btn btn-outline-success"><@spring.message 'main.details'/></a>
 
                 </td class="align-middle">
             </tr>

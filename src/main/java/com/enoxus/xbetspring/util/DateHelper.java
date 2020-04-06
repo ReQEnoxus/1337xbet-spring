@@ -14,7 +14,7 @@ import java.util.Locale;
 public class DateHelper {
     private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-    public List<String> getThisWeek() {
+    public synchronized List<String> getThisWeek() {
         List<String> dates = new ArrayList<>();
         String today = formatter.format(new Date());
         dates.add(today);

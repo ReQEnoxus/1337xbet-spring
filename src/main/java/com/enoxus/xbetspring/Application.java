@@ -1,6 +1,7 @@
 package com.enoxus.xbetspring;
 
 import com.enoxus.xbetspring.util.DataUpdater;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,6 +30,11 @@ public class Application {
         df.setRoundingMode(RoundingMode.FLOOR);
 
         return df;
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
     }
 
 

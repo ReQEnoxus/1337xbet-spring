@@ -37,7 +37,7 @@
             </#if>
             <div class="form-group">
 
-                <input type="text" class="form-control" placeholder="<@spring.message 'login.prompt'/>" required
+                <input type="text" class="form-control" placeholder="<@spring.message 'register.login'/>" required
                        pattern="[A-Za-z]+" minlength="6" maxlength="20" name="login">
                 <div class="invalid-feedback">
                     <@spring.message 'register.loginInvalid'/>

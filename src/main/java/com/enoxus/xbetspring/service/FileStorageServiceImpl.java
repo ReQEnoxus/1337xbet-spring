@@ -42,7 +42,7 @@ public class FileStorageServiceImpl implements FileStorageService {
     @Override
     public void writeFileToResponse(String fileName, HttpServletResponse response) {
         // находите информацию о файле в БД
-        FileInfo file = fileInfoRepository.findOneByStorageFileName(fileName);
+        FileInfo file = fileInfoRepository.findFirstByStorageFileName(fileName).get();
         // указываем Content-Type для ответа
         response.setContentType(file.getType());
         // получили инпут стрим файла на диске

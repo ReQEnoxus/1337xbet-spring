@@ -17,4 +17,5 @@ public class UserDto {
     private Double balance;
     private String avatarPath;
     private String login;
+    private String state;
 }

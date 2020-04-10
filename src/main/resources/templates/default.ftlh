@@ -43,6 +43,8 @@
                     <a class="dropdown-item" style="color: white;"
                        href="/user?id=${user.id}"><@spring.message 'common.myProfile'/></a>
                     <a class="dropdown-item" style="color: white;" href="/bets"><@spring.message 'common.myBets'/></a>
+                    <a class="dropdown-item" style="color: white;"
+                       href="/support"><@spring.message 'common.support'/></a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" style="color: white;" href="/logout"><@spring.message 'common.logout'/></a>
                 </div>
@@ -62,6 +64,8 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="/login" style="color: white;"><@spring.message 'common.signIn'/></a>
+                    <a class="dropdown-item" href="/support"
+                       style="color: white;"><@spring.message 'common.support'/></a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/register"
                        style="color: white;"><@spring.message 'register.prompt'/></a>

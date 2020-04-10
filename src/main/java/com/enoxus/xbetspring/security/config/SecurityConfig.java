@@ -1,5 +1,6 @@
 package com.enoxus.xbetspring.security.config;
 
+import com.enoxus.xbetspring.entity.State;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -30,6 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/errorPage").permitAll()
                 .antMatchers("/edit").authenticated()
                 .antMatchers("/comment").authenticated()
+                .antMatchers("/sup").authenticated()
+                .antMatchers("/support").authenticated()
+                .antMatchers("/manage").hasAuthority(State.ADMIN.name())
                 .antMatchers("/").permitAll()
                 .antMatchers("/bets").authenticated();
 

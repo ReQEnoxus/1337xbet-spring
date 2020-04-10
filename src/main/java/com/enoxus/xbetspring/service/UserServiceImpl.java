@@ -1,13 +1,17 @@
 package com.enoxus.xbetspring.service;
 
 import com.enoxus.xbetspring.dto.UserDto;
+import com.enoxus.xbetspring.entity.State;
+import com.enoxus.xbetspring.entity.User;
 import com.enoxus.xbetspring.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Component
 public class UserServiceImpl implements UserService {
@@ -25,6 +29,7 @@ public class UserServiceImpl implements UserService {
                 .lastName(user.getLastName())
                 .name(user.getName())
                 .login(user.getLogin())
+                .state(user.getState().name())
                 .build());
     }
 
@@ -41,9 +46,39 @@ public class UserServiceImpl implements UserService {
                     .lastName(user.getLastName())
                     .name(user.getName())
                     .login(user.getLogin())
+                    .state(user.getState().name())
                     .build());
         } else {
             return Optional.empty();
         }
+    }
+
+    @Override
+    public List<UserDto> getAllUsers() {
+
+        return userRepository.findAll().stream().map(user -> UserDto.builder()
+                .avatarPath(user.getAvatar().getStorageFileName())
+                .balance(user.getBalance())
+                .email(user.getEmail())
+                .id(user.getId())
+                .lastName(user.getLastName())
+                .name(user.getName())
+                .login(user.getLogin())
+                .state(user.getState().name())
+                .build()).collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<UserDto> getAdmin() {
+        return userRepository.findByState(State.ADMIN).map(user -> UserDto.builder()
+                .avatarPath(user.getAvatar().getStorageFileName())
+                .balance(user.getBalance())
+                .email(user.getEmail())
+                .id(user.getId())
+                .lastName(user.getLastName())
+                .name(user.getName())
+                .login(user.getLogin())
+                .state(user.getState().name())
+                .build());
     }
 }

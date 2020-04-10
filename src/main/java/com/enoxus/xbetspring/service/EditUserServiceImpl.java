@@ -38,7 +38,7 @@ public class EditUserServiceImpl implements EditUserService {
                 userToEdit.setBalance(dto.getBalance());
                 userToEdit.setName(dto.getName());
                 userToEdit.setLastName(dto.getLastName());
-                userToEdit.setAvatar(fileInfoRepository.findOneByStorageFileName(dto.getAvatarPath()));
+                userToEdit.setAvatar(fileInfoRepository.findFirstByStorageFileName(dto.getAvatarPath()).get());
 
                 userRepository.save(userToEdit);
             }

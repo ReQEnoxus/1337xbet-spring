@@ -1,5 +1,6 @@
 package com.enoxus.xbetspring.repositories;
 
+import com.enoxus.xbetspring.entity.State;
 import com.enoxus.xbetspring.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -10,4 +11,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByLogin(String login);
 
     Optional<User> findByConfirmCode(String code);
+
+    Optional<User> findByState(State state);
 }

@@ -3,9 +3,11 @@ package com.enoxus.xbetspring.security.details;
 import com.enoxus.xbetspring.entity.State;
 import com.enoxus.xbetspring.entity.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 
 public class UserDetailsImpl implements UserDetails {
 
@@ -17,7 +19,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.singletonList(new SimpleGrantedAuthority(user.getState().name()));
     }
 
     @Override
@@ -47,7 +49,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return user.getState().equals(State.CONFIRMED);
+        return !user.getState().equals(State.NOT_CONFIRMED);
     }
 
     public User getUser() {

@@ -64,7 +64,7 @@
 
 
 <input name="message" id="message" placeholder="Text">
-<button onclick="send(document.getElementById('message').value, '${user.login}', <#if user.state == "ADMIN"> document.getElementById('receiver').value <#else> 'enoxus' </#if>)"> <@spring.message 'match.send'/> </button>
+<button onclick="send(document.getElementById('message').value, '${user.login}', <#if user.state == "ADMIN"> document.getElementById('receiver').value <#else> '${adminLogin}' </#if>)"> <@spring.message 'match.send'/> </button>
 
 
 </#macro>

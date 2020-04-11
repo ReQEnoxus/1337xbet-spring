@@ -27,6 +27,8 @@ public class SupportController {
         UserDto user = userService.getCurrentUser().get();
         model.addAttribute("user", user);
 
+        model.addAttribute("adminLogin", userService.getAdmin().get().getLogin());
+
         if (user.getState().equals(State.ADMIN.name())) {
             model.addAttribute("users", userService.getAllUsers());
         }
@@ -38,6 +40,7 @@ public class SupportController {
     @GetMapping("/manage")
     public String getAdminPage(@RequestParam(value = "receiver") String receiver, Model model) {
         UserDto user = userService.getCurrentUser().get();
+        model.addAttribute("adminLogin", userService.getAdmin().get().getLogin());
         model.addAttribute("user", user);
         model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("messages", messageService.getDialog(user.getLogin(), receiver));

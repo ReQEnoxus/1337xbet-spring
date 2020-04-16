@@ -73,6 +73,7 @@ public class BetServiceImpl implements BetService {
                     .amount(betDto.getAmount())
                     .coefficient(betHelper.calculateCoefficients(match.getHomeTeam().getId(), match.getAwayTeam().getId()).get(prediction))
                     .match(match)
+                    .prediction(Prediction.values()[betDto.getPrediction()])
                     .owner(user)
                     .won(false)
                     .build();

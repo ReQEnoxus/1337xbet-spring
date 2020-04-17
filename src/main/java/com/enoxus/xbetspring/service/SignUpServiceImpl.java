@@ -74,9 +74,9 @@ public class SignUpServiceImpl implements SignUpService {
                 .avatar(avatarFile)
                 .build();
 
-//        executorService.submit(() ->
-//                log.debug(smsService.sendSignUpSms("Вы успешно зарегистрировались. Подтвердите аккаунт, следуя инструкциям на почте", dto.getPhoneNumber()))
-//        );
+        executorService.submit(() ->
+                log.debug(smsService.sendSignUpSms("Вы успешно зарегистрировались. Подтвердите аккаунт, следуя инструкциям на почте", dto.getPhoneNumber()))
+        );
 
         executorService.submit(() -> emailService.sendMail(ConfirmationMessage.builder()
                 .code(user.getConfirmCode())

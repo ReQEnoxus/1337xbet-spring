@@ -45,6 +45,7 @@
             <input type="checkbox" value="remember-me" name="remember"> <@spring.message 'login.rememberMe' />
         </label>
     </div>
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
     <button class="btn btn-lg btn-success btn-block mb-3" type="submit"><@spring.message 'login.prompt' /></button>
     <center class="mt-3">
         <a href="/register" class="card-link mx-auto"><@spring.message 'login.createAccount' /></a>

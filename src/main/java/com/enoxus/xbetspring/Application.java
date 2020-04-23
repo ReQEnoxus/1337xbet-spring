@@ -10,6 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -52,6 +54,18 @@ public class Application {
     @Qualifier(value = "sdfForApiDecoding")
     public SimpleDateFormat sdfForApiDecoding() {
         return new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+    }
+
+    @Bean
+    public TaskScheduler taskScheduler() {
+
+        ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
+
+        scheduler.setPoolSize(2);
+        scheduler.setThreadNamePrefix("scheduled-task-");
+        scheduler.setDaemon(true);
+
+        return scheduler;
     }
 
     @Autowired

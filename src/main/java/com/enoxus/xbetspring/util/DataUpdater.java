@@ -16,17 +16,11 @@ public class DataUpdater implements Runnable {
     private ApiService apiService;
 
     @Autowired
-    private BetService betService;
-
-    @Autowired
     private DateHelper dateHelper;
 
     @SneakyThrows
     @Override
     public void run() {
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date initialDate = new Date();
 
         System.out.println("Data updater started, requesting data for current week");
 
@@ -36,22 +30,5 @@ public class DataUpdater implements Runnable {
         }
 
         System.out.println("Received initial data, waiting");
-
-        while (true) {
-            try {
-                Thread.sleep(1000 * 60 * 60 * 24);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            apiService.updateMatchesForDate(formatter.format(initialDate));
-
-            initialDate = new Date();
-            Date nextDate = new Date(initialDate.getTime() + 86400000 * 6);
-
-            apiService.getMatchesForDate(formatter.format(nextDate));
-
-            betService.verifyAndCloseBetsOnFinishedMatches();
-        }
     }
 }
